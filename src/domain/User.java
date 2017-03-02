@@ -11,10 +11,23 @@ public class User implements FileContainer, Serializable{
 	private String name;
 	private String password;	
 	private String filename;
+	private String IP;
 	private byte[] fileContent;
 	
 	
 	
+	public String getIP() {
+		return IP;
+	}
+
+
+
+	public void setIP(String iP) {
+		IP = iP;
+	}
+
+
+
 	public byte[] getFileContent() {
 		return fileContent;
 	}

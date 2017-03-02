@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import domain.Response;
 import util.FileHandler;
 
 public class ClientSocket implements Runnable{
-	public static final String IP_ADDR = "localhost";//服务器地址 
-	public static final int PORT = 54321;//服务器端口号  
+	public static  String IP_ADDR = "localhost";//服务器地址 
+	public static  int PORT = 54321;//服务器端口号  
 	
 	private Client client;
 	
@@ -18,6 +19,7 @@ public class ClientSocket implements Runnable{
 	public ClientSocket(Client client) {
 		super();
 		this.client = client;
+		IP_ADDR = client.getUser().getIP();
 	}
 
 
@@ -48,7 +50,10 @@ public class ClientSocket implements Runnable{
 		          	        
 		            in.close();
 		            out.close();
-	        	} catch (Exception e) {
+	        	} catch (UnknownHostException e) {
+					client.getGui().getMessage().setText("主机IP无法连接");
+				}
+	        	catch (Exception e) {
 	        		System.out.println("客户端异常:" + e.getMessage()); 
 	        	} finally {
 	        		if (socket != null) {

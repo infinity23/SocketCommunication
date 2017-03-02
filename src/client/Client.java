@@ -38,18 +38,20 @@ public class Client {
 		case "register":
 			user.setName(gui.getUserName().getText());
 			user.setPassword(new String(gui.getPassword().getPassword()));
+			user.setIP(gui.getIP().getText());
 			user.setState(s);
 			break;
 		case "login":
 			user.setName(gui.getUserName().getText());
 			user.setPassword(new String(gui.getPassword().getPassword()));
+			user.setIP(gui.getIP().getText());
 			user.setState(s);
 			break;
 		case "upload":
 			try {
 				FileHandler.upload("./ClientFiles/"+gui.getFileName().getText(), user);
 			}catch (FileNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "文件不存在！");
+				JOptionPane.showMessageDialog(null, "文件不存在");
 				return;
 			} 
 			catch (IOException e) {
